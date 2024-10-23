@@ -1,16 +1,16 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "send_db",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
     "username": "u615991821_abitechcoder",
     "password": "Pxykjbpkeg@105",
     "database": "u615991821_send_database",
     "host": "srv909.hstgr.io",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "send_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
