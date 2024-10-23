@@ -22,6 +22,7 @@ exports.createReport = async (req, res) => {
 
     res.status(201).json(report);
   } catch (error) {
+    console.error('Error:', error.message);
     res
       .status(400)
       .json({ message: 'Error creating report', error: error.message });
