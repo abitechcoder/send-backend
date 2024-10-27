@@ -1,4 +1,4 @@
-const { Program } = require('../models');
+const { Program, Project } = require('../models');
 const { uploadFile } = require('../utils/fileUpload');
 
 exports.createProgram = async (req, res) => {
@@ -25,9 +25,7 @@ exports.createProgram = async (req, res) => {
 
 exports.getAllPrograms = async (req, res) => {
   try {
-    const programs = await Program.findAll({
-      order: [['createdAt', 'DESC']],
-    });
+    const programs = await Program.findAll();
     res.json(programs);
   } catch (error) {
     res
@@ -38,9 +36,26 @@ exports.getAllPrograms = async (req, res) => {
 
 exports.getProgramById = async (req, res) => {
   try {
-    const program = await Program.findByPk(req.params.id);
+    const program = await Program.findOne({
+      where: {
+        id: req.params.id,
+      },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
     if (program) {
-      res.json(program);
+      const projects = await Project.findAll({
+        where: {
+          program_area: program.title,
+        },
+      });
+
+      const programArea = {
+        ...program.dataValues,
+        projects: projects,
+      };
+
+      res.json(programArea);
     } else {
       res.status(404).json({ message: 'Program area not found' });
     }
