@@ -15,7 +15,7 @@ const corsOptions = {
   origin: [
     'http://localhost:5173',
     'https://sendsierraleone.com',
-    'https://www.sendsierraleone.com/',
+    'https://www.sendsierraleone.com',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
