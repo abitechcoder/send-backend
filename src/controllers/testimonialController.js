@@ -31,7 +31,9 @@ exports.createTestimonial = async (req, res) => {
 
 exports.getAllTestimonials = async (req, res) => {
   try {
-    const testimonials = await Testimonial.findAll();
+    const testimonials = await Testimonial.findAll({
+      order: [['createdAt', 'DESC']],
+    });
     res.json(testimonials);
   } catch (error) {
     res.status(500).json({
